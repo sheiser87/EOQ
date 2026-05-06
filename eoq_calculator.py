@@ -4,6 +4,20 @@ from scipy import stats
 
 st.title("Inventory Calculator")
 
+# --- Holding Cost Calculator ---
+st.header("Holding Cost Calculator")
+
+col_h1, col_h2 = st.columns(2)
+with col_h1:
+    unit_cost = st.number_input("Unit Cost per Item ($)", min_value=0.0, value=10.0, step=0.50)
+with col_h2:
+    holding_pct = st.number_input("Annual Holding Cost (%)", min_value=0.0, max_value=100.0, value=20.0, step=0.5)
+
+computed_H = unit_cost * (holding_pct / 100)
+st.metric("Holding Cost per Unit per Year (H)", f"${computed_H:.2f}", help="Enter this value as H in the EOQ Calculator below.")
+
+st.divider()
+
 # --- EOQ Calculator ---
 st.header("EOQ Calculator")
 
